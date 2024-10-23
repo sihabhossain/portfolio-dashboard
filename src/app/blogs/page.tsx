@@ -4,16 +4,21 @@ import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import BlogTable from "@/components/tables/BlogsTable";
 import { useCreateBlog, useGetBlog } from "@/hooks/api/blog.hook";
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.snow.css"; // Import styles for Quill editor
+
+// Dynamically import ReactQuill to avoid SSR issues
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const Page = () => {
   const [formData, setFormData] = useState({
     title: "",
-    content: "",
+    content: "", // Content for the rich text editor
     author: "",
     thumbnail: "",
   });
 
-  const [isLoading, setIsLoading] = useState(false); // Add loading state
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -25,6 +30,13 @@ const Page = () => {
     }));
   };
 
+  const handleEditorChange = (value: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      content: value, // Set content for the rich text editor
+    }));
+  };
+
   // APIs for blogs
   const { mutate: createBlog } = useCreateBlog();
   const { data: blogs } = useGetBlog();
@@ -32,15 +44,15 @@ const Page = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setIsLoading(true); // Set loading state to true
+    setIsLoading(true);
 
     createBlog(formData, {
       onSuccess: () => {
-        setFormData({ title: "", content: "", author: "", thumbnail: "" }); // Reset form fields
-        setIsLoading(false); // Reset loading state
+        setFormData({ title: "", content: "", author: "", thumbnail: "" });
+        setIsLoading(false);
       },
       onError: () => {
-        setIsLoading(false); // Reset loading state on error
+        setIsLoading(false);
       },
     });
   };
@@ -70,14 +82,11 @@ const Page = () => {
           <label htmlFor="content" className="text-gray-300 block">
             Content
           </label>
-          <textarea
-            id="content"
-            name="content"
+          <ReactQuill
+            theme="snow"
             value={formData.content}
-            onChange={handleChange}
-            required
-            className="border-gray-600 bg-gray-900 w-full rounded border bg-graydark p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-            rows={5}
+            onChange={handleEditorChange}
+            className="bg-gray-900 text-white"
           />
         </div>
         <div>
@@ -113,7 +122,7 @@ const Page = () => {
           className={`rounded px-4 py-2 text-white transition duration-200 ${
             isLoading ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-500"
           }`}
-          disabled={isLoading} // Disable button while loading
+          disabled={isLoading}
         >
           {isLoading ? "Creating..." : "Create Blog"}
         </button>
