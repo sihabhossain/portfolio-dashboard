@@ -1,22 +1,24 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
+import { CreateProject, GetProjects } from "@/services/projects";
+import { TProject } from "@/types";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
-// Define the API endpoint
-const API_URL = 'http://localhost:8000/api/projects'; // Adjust the URL based on your backend setup
-
-
-
-// Custom hook for creating a project
 export const useCreateProject = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation(useCreateProject, {
+  return useMutation<any, Error, TProject>({
+    mutationKey: ["CREATE_PROJECT"],
+    mutationFn: (projectData) => CreateProject(projectData),
     onSuccess: () => {
-      // Invalidate and refetch the projects list after a new project is created
-      queryClient.invalidateQueries(['projects']);
+      toast.success("Project created successfully");
     },
-    onError: (error: any) => {
-      console.error('Error creating project:', error);
+    onError: (error) => {
+      toast.error(error.message);
     },
+  });
+};
+
+export const useGetProjects = () => {
+  return useQuery({
+    queryKey: ["GET_PROJECTS"],
+    queryFn: () => GetProjects(),
   });
 };
