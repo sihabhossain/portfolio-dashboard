@@ -22,3 +22,12 @@ export const GetProjects = async () => {
     throw new Error(error);
   }
 };
+
+export const deleteProject = async (_id: string) => {
+  try {
+    const { data } = await axiosInstance.delete(`/projects/${_id}`);
+    return data;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};

@@ -34,3 +34,15 @@ export type TBlogPost = {
 export interface BlogTableProps {
   blogs: TBlogPost[];
 }
+
+export interface Project {
+  _id?: string;
+  title: string;
+  des: string;
+  img: string;
+  link: string;
+}
+
+export interface ProjectsTableProps {
+  projects: Project[];
+}
