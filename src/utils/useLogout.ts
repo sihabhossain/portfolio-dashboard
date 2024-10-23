@@ -1,5 +1,5 @@
 "use client";
-
+import Cookies from "js-cookie";
 import { ROUTES } from "@/routes/routes";
 import { useRouter } from "next/navigation"; // Import the useRouter hook
 import toast from "react-hot-toast";
@@ -10,30 +10,13 @@ const useLogout = () => {
   const logout = async (): Promise<void> => {
     try {
       // Retrieve the authToken from localStorage
-      const authToken = localStorage.getItem("authToken");
+      const authToken = Cookies.get("accessToken");
 
       // If authToken is not found, do nothing
       if (!authToken) return;
 
       // Remove the authToken from localStorage
-      localStorage.removeItem("authToken");
-
-      // Call the logout API endpoint with the authToken as Bearer token
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}${ROUTES.LOG_OUT}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${authToken}`,
-            Accept: "application/json",
-          },
-        },
-      );
-
-      if (!response.ok) {
-        throw new Error("Logout failed");
-      }
+      Cookies.remove("accessToken");
 
       //   show toast after user signed out
       toast("Successfully signed out", {

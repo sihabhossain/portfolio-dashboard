@@ -1,9 +1,6 @@
 export type TUserData = {
-  name?: string;
   email: string;
   password: string;
-  mobileNumber?: string;
-  profilePhoto?: string;
 };
 
 export type TProject = {
