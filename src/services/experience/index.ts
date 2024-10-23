@@ -22,3 +22,12 @@ export const getExperience = async () => {
     throw new Error(error);
   }
 };
+
+export const deleteExp = async (_id: string) => {
+  try {
+    const { data } = await axiosInstance.delete(`/experience/${_id}`);
+    return data;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};

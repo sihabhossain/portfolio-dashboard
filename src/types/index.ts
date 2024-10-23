@@ -15,12 +15,10 @@ export type TProject = {
 };
 
 export type TExperience = {
+  _id?: string;
   title: string;
   span: string;
   desc: string;
-  className: string;
-  thumbnail?: string;
-  company: string;
 };
 
 export type TBlogPost = {
@@ -45,4 +43,23 @@ export interface Project {
 
 export interface ProjectsTableProps {
   projects: Project[];
+}
+
+export interface Skill {
+  _id?: string;
+  name: string;
+  level: string;
+  description: string;
+}
+
+// types.ts
+export interface TSkill {
+  _id?: string; // Unique identifier for each skill
+  name: string; // Name of the skill
+  level: string; // Level of proficiency (e.g., "Beginner", "Intermediate", "Advanced")
+  description: string; // A brief description of the skill
+}
+
+export interface ExperienceTableProps {
+  experiences: TExperience[];
 }

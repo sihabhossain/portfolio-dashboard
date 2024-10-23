@@ -1,4 +1,8 @@
-import { CreateExperience } from "@/services/experience";
+import {
+  CreateExperience,
+  deleteExp,
+  getExperience,
+} from "@/services/experience";
 import { GetProjects } from "@/services/projects";
 import { TExperience } from "@/types";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -20,6 +24,21 @@ export const useCreateExp = () => {
 export const useGetExp = () => {
   return useQuery({
     queryKey: ["GET_EXP"],
-    queryFn: () => GetProjects(),
+    queryFn: () => getExperience(),
+    refetchInterval: 1000,
+    refetchIntervalInBackground: true,
+  });
+};
+
+export const useDeleteExp = () => {
+  return useMutation({
+    mutationKey: ["DELETE_BLOG"],
+    mutationFn: (_id: string) => deleteExp(_id),
+    onSuccess: () => {
+      toast.success("Blog deleted");
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
   });
 };
