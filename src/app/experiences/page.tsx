@@ -10,6 +10,8 @@ const ExperiencePage = () => {
     title: "",
     span: "",
     desc: "",
+    thumbnail: "", // Added thumbnail field
+    company: "", // Added company field
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +37,13 @@ const ExperiencePage = () => {
 
     createExperience(formData, {
       onSuccess: () => {
-        setFormData({ title: "", span: "", desc: "" }); // Reset form fields
+        setFormData({
+          title: "",
+          span: "",
+          desc: "",
+          thumbnail: "",
+          company: "",
+        }); // Reset form fields
         setIsLoading(false);
       },
       onError: () => {
@@ -91,6 +99,34 @@ const ExperiencePage = () => {
             required
             className="border-gray-600 bg-gray-900 w-full rounded border bg-graydark p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             rows={5}
+          />
+        </div>
+        <div>
+          <label htmlFor="thumbnail" className="text-gray-300 block">
+            Thumbnail URL
+          </label>
+          <input
+            type="text"
+            id="thumbnail"
+            name="thumbnail"
+            value={formData.thumbnail}
+            onChange={handleChange}
+            required
+            className="border-gray-600 bg-gray-900 w-full rounded border bg-graydark p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="company" className="text-gray-300 block">
+            Company
+          </label>
+          <input
+            type="text"
+            id="company"
+            name="company"
+            value={formData.company}
+            onChange={handleChange}
+            required
+            className="border-gray-600 bg-gray-900 w-full rounded border bg-graydark p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
         <button

@@ -23,7 +23,7 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({ projects }) => {
           <tr className="bg-gray-700 text-gray-200">
             <th className="p-4 text-left">Title</th>
             <th className="p-4 text-left">Description</th>
-            <th className="p-4 text-left">Image</th>
+
             <th className="p-4 text-left">Actions</th>
           </tr>
         </thead>
@@ -32,9 +32,6 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({ projects }) => {
             <tr key={project.title} className="hover:bg-gray-600">
               <td className="p-4">{project.title}</td>
               <td className="p-4">{project.des}</td>
-              <td className="p-4">
-                <img src={project.img} alt={project.title} className="h-16" />
-              </td>
 
               <td className="p-4">
                 <button

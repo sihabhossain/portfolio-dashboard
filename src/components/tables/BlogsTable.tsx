@@ -22,12 +22,7 @@ const BlogTable: React.FC<BlogTableProps> = ({ blogs }) => {
             <th className="text-gray-300 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
               Title
             </th>
-            <th className="text-gray-300 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-              Author
-            </th>
-            <th className="text-gray-300 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-              Thumbnail
-            </th>
+
             <th className="text-gray-300 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
               Content
             </th>
@@ -42,18 +37,9 @@ const BlogTable: React.FC<BlogTableProps> = ({ blogs }) => {
               <td className="whitespace-nowrap px-6 py-4 text-sm text-white">
                 {blog.title}
               </td>
+
               <td className="whitespace-nowrap px-6 py-4 text-sm text-white">
-                {blog.author}
-              </td>
-              <td className="whitespace-nowrap px-6 py-4 text-sm text-white">
-                <img
-                  src={blog.thumbnail}
-                  alt={blog.title}
-                  className="h-16 w-16 rounded object-cover"
-                />
-              </td>
-              <td className="whitespace-nowrap px-6 py-4 text-sm text-white">
-                {blog.content}
+                <div dangerouslySetInnerHTML={{ __html: blog.content }} />
               </td>
               <td className="whitespace-nowrap px-6 py-4 text-sm text-white">
                 <button

@@ -12,7 +12,7 @@ const HomePage: React.FC = () => {
             Welcome to Our Dashboard!
           </h1>
           <p className="text-gray-700 dark:text-gray-300 text-lg">
-            We're glad to have you here. Explore our features and manage your
+            We are glad to have you here. Explore our features and manage your
             account seamlessly.
           </p>
         </div>

@@ -54,20 +54,7 @@ const SkillsPage: React.FC = () => {
             className="border-gray-600 bg-gray-900 w-full rounded border bg-graydark p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        <div>
-          <label htmlFor="level" className="text-gray-300 block">
-            Level
-          </label>
-          <input
-            type="text"
-            id="level"
-            name="level"
-            value={formData.level}
-            onChange={handleChange}
-            required
-            className="border-gray-600 bg-gray-900 w-full rounded border bg-graydark p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
+
         <div>
           <label htmlFor="description" className="text-gray-300 block">
             Description

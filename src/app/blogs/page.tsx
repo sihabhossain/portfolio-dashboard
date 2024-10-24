@@ -89,34 +89,7 @@ const Page = () => {
             className="bg-gray-900 text-white"
           />
         </div>
-        <div>
-          <label htmlFor="author" className="text-gray-300 block">
-            Author
-          </label>
-          <input
-            type="text"
-            id="author"
-            name="author"
-            value={formData.author}
-            onChange={handleChange}
-            required
-            className="border-gray-600 bg-gray-900 w-full rounded border bg-graydark p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-        <div>
-          <label htmlFor="thumbnail" className="text-gray-300 block">
-            Thumbnail URL
-          </label>
-          <input
-            type="text"
-            id="thumbnail"
-            name="thumbnail"
-            value={formData.thumbnail}
-            onChange={handleChange}
-            required
-            className="border-gray-600 bg-gray-900 w-full rounded border bg-graydark p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
+
         <button
           type="submit"
           className={`rounded px-4 py-2 text-white transition duration-200 ${
